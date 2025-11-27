@@ -1,0 +1,7 @@
+import socket
+
+if __name__ == "__main__":
+    s = socket.socket()
+    s.bind(('',28333))
+    s.listen()
+    new_socket = s.accept()[0]
