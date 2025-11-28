@@ -10,8 +10,8 @@ if __name__ == "__main__":
     s.bind(('',28333))
     s.listen()
     while True:
-        new_socket = s.accept()[0]
-        print("new connection")
+        new_socket, (client_ip, client_port) = s.accept()
+        print("New connection from:", client_ip, "port:", client_port)
         buf = b''
         while b'\r\n\r\n' not in buf:
             data = new_socket.recv(4096)
