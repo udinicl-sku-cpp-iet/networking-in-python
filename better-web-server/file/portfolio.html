@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio di [Il Tuo Nome]</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- VARIABILI COLORI --- */
+        :root {
+            --bg-color: #1a1a1a;
+            --card-bg: #2d2d2d;
+            --primary-color: #00adb5; /* Un bel turchese acceso */
+            --text-color: #eeeeee;
+            --text-secondary: #b3b3b3;
+        }
+
+        /* --- RESET & BASE --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: 0.3s;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* --- HEADER & NAV --- */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 10%;
+            position: fixed;
+            width: 100%;
+            background-color: rgba(26, 26, 26, 0.95);
+            z-index: 1000;
+            border-bottom: 1px solid #333;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a:hover {
+            color: var(--primary-color);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        .hero span {
+            color: var(--primary-color);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            padding: 10px 25px;
+            background-color: var(--primary-color);
+            color: #fff;
+            border-radius: 5px;
+            font-weight: 600;
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn:hover {
+            background-color: transparent;
+            color: var(--primary-color);
+        }
+
+        /* --- SEZIONI GENERALI --- */
+        section {
+            padding: 80px 10%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 60px;
+        }
+
+        .section-title span {
+            border-bottom: 3px solid var(--primary-color);
+        }
+
+        /* --- GRIGLIA PROGETTI --- */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+        }
+
+        /* Placeholder per l'immagine del progetto */
+        .project-img {
+            height: 200px;
+            background-color: #444;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #777;
+        }
+
+        .project-info {
+            padding: 20px;
+        }
+
+        .project-info h3 {
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        .project-info p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        .tags {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .tag {
+            font-size: 0.75rem;
+            background-color: #333;
+            padding: 5px 10px;
+            border-radius: 20px;
+            color: var(--primary-color);
+        }
+
+        .card-links {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .link-text {
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        /* --- SKILLS --- */
+        .skills-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .skill-item {
+            background: var(--card-bg);
+            padding: 15px 30px;
+            border-radius: 5px;
+            border: 1px solid #333;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            text-align: center;
+            padding: 40px;
+            background-color: #111;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* --- MEDIA QUERIES (RESPONSIVE) --- */
+        @media (max-width: 768px) {
+            header {
+                padding: 15px 5%;
+            }
+            
+            nav ul {
+                display: none; /* In un progetto reale qui metteresti un menu hamburger */
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            section {
+                padding: 60px 5%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">DevPortfolio.</div>
+        <nav>
+            <ul>
+                <li><a href="#about">Chi Sono</a></li>
+                <li><a href="#projects">Progetti</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#contact">Contatti</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero" id="about">
+        <h1>Ciao, sono <span>Tuo Nome</span></h1>
+        <p>Sono un Junior Web Developer appassionato di codice pulito, design minimalista e tecnologie moderne.</p>
+        <a href="#projects" class="btn">Vedi i miei lavori</a>
+    </section>
+
+    <section id="projects">
+        <h2 class="section-title"><span>I Miei Progetti</span></h2>
+        
+        <div class="projects-grid">
+            
+            <div class="project-card">
+                <div class="project-img">[Immagine Progetto]</div> <div class="project-info">
+                    <h3>E-Commerce Dashboard</h3>
+                    <p>Una dashboard amministrativa responsive per visualizzare vendite e ordini in tempo reale.</p>
+                    <div class="tags">
+                        <span class="tag">HTML</span>
+                        <span class="tag">CSS</span>
+                        <span class="tag">JavaScript</span>
+                    </div>
+                    <div class="card-links">
+                        <a href="#" class="link-text">Demo Live &rarr;</a>
+                        <a href="#" class="link-text">Codice GitHub &rarr;</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-img">[Immagine Progetto]</div>
+                <div class="project-info">
+                    <h3>App Meteo</h3>
+                    <p>Applicazione web che mostra le previsioni meteo utilizzando un'API esterna.</p>
+                    <div class="tags">
+                        <span class="tag">React</span>
+                        <span class="tag">API</span>
+                    </div>
+                    <div class="card-links">
+                        <a href="#" class="link-text">Demo Live &rarr;</a>
+                        <a href="#" class="link-text">Codice GitHub &rarr;</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-img">[Immagine Progetto]</div>
+                <div class="project-info">
+                    <h3>Portfolio Personale</h3>
+                    <p>Questo sito web! Costruito interamente da zero per mostrare le mie capacità.</p>
+                    <div class="tags">
+                        <span class="tag">HTML</span>
+                        <span class="tag">CSS Grid</span>
+                    </div>
+                    <div class="card-links">
+                        <a href="#" class="link-text">Demo Live &rarr;</a>
+                        <a href="#" class="link-text">Codice GitHub &rarr;</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="skills">
+        <h2 class="section-title"><span>Competenze Tecniche</span></h2>
+        <div class="skills-container">
+            <div class="skill-item">HTML5</div>
+            <div class="skill-item">CSS3 / SASS</div>
+            <div class="skill-item">JavaScript (ES6+)</div>
+            <div class="skill-item">Git & GitHub</div>
+            <div class="skill-item">React.js</div>
+            <div class="skill-item">Responsive Design</div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <p>Interessato a lavorare insieme? Scrivimi a: <a href="mailto:email@esempio.com" style="color:var(--primary-color)">email@esempio.com</a></p>
+        <br>
+        <p>&copy; 2023 Tuo Nome. Tutti i diritti riservati.</p>
+    </footer>
+
+</body>
+</html>

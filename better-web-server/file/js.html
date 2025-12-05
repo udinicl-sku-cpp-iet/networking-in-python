@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calcolatrice Semplice (Somma)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f9;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        input[type="number"], button {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            border: none;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #risultato {
+            margin-top: 20px;
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>🔢 Somma Dinamica</h2>
+
+        <label for="numero1">Primo Numero:</label>
+        <input type="number" id="numero1" value="0">
+
+        <label for="numero2">Secondo Numero:</label>
+        <input type="number" id="numero2" value="0">
+
+        <button onclick="calcolaSomma()">Somma</button>
+
+        <div id="risultato">
+            Risultato: 0
+        </div>
+    </div>
+
+    <script>
+        function calcolaSomma() {
+            // 1. Prendo i valori dai campi di input tramite l'ID
+            const input1 = document.getElementById('numero1').value;
+            const input2 = document.getElementById('numero2').value;
+
+            // 2. Converto i valori in numeri interi (o float)
+            // L'input.value è sempre una stringa, quindi è FONDAMENTALE convertirla!
+            const num1 = parseFloat(input1);
+            const num2 = parseFloat(input2);
+
+            // 3. Eseguo la somma
+            const somma = num1 + num2;
+
+            // 4. Mostro il risultato nell'elemento HTML con ID 'risultato'
+            const risultatoElement = document.getElementById('risultato');
+
+            // Controllo se i valori sono validi (non NaN)
+            if (isNaN(num1) || isNaN(num2)) {
+                risultatoElement.textContent = "Errore: Inserisci numeri validi.";
+            } else {
+                risultatoElement.textContent = `Risultato: ${somma}`;
+            }
+        }
+    </script>
+
+</body>
+</html>

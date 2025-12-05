@@ -1,0 +1,5 @@
+def ip_to_bytes(filename:str):
+    with open(filename,"r") as f:
+        return f.read.split()
+print(ip_to_bytes("./tcp_addrs_0.txt"))
+    
