@@ -33,7 +33,7 @@ def get_next_word_packet(s):
         if not data:
             return None
         packet_buffer += data
-    packet = packet_buffer[:2+n]
+    packet        = packet_buffer[:2+n]
     packet_buffer = packet_buffer[2+n:]
     return packet
 

@@ -49,7 +49,7 @@ def main(argv):
     while True:
         string_to_send = f"{prefix}: {random_string()}"
         string_bytes = string_to_send.encode()
-        s.send(string_bytes)
+        s.sendall(string_bytes)
 
         delay_random_time()
 

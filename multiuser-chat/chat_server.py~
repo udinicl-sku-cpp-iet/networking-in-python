@@ -1,0 +1,65 @@
+import sys
+import socket
+import select
+import json
+
+def run_server(port):
+    listener = socket.socket()
+    listener.bind(('',port))
+    listener.listen()
+    
+    read_set = set()
+    read_set.add(listener)
+
+    # Chiave: int (socket_id)
+    # Valore: tuple (nickname : str, buffer : bytes)
+    socket_registry = {}
+    
+    while True:
+        ready_to_read, _, _ = select.select(read_set, {}, {})
+        for s in ready_to_read:
+            if s == listener:
+                new_s, connection_info = listener.accept()
+                print(connection_info, end = ": connected\n")
+                read_set.add(new_s)
+            else:
+                buf = s.recv(4096)
+                if len(buf) == 0 :
+                    print(s.getpeername(), end = ": disconnected\n")
+                    read_set.remove(s)
+                else:
+                    print(s.getpeername(), end = f"{len(buf)} bytes : {buf}\n")
+                    buf = json.loads(buf.decode())
+                    if buf['type'] == 'hello':                        
+                        socket_registry[s.fileno()] = (buf['nick'],b'')
+                        data = {
+                                    "type":  "join",
+                                    "nick": f"{buf['nick']}"
+                        }
+                        json_string = json.dumps(data).encode()
+                        for sock in ready_to_read:
+                            if sock != listener and sock != s:
+                                print('inviato')
+                                sock.sendall(json_string)
+                                
+                                        
+
+
+                
+
+
+
+def usage():
+    print("usage: chat_server.py port", file=sys.stderr)
+
+def main(argv):
+    try:
+        port = int(argv[1])
+    except:
+        usage()
+        return 1
+
+    run_server(port)
+
+if __name__ == "__main__":
+    sys.exit(main(sys.argv))

@@ -27,21 +27,7 @@ WORDS = [
     "off", "play", "turn", "few", "group", "such"
 ]   
 
-WORDS = [
-    "A" * 40000,
-    "A" * 40000,
-    "A" * 40000,
-    "A" * 40000,
-    "A" * 40000,
-    "A" * 40000,
-    "A" * 40000,
-    "A" * 40000,
-    "A" * 40000,
-    "A" * 40000,
-    "A" * 40000,
-    "A" * 40000,
-    "A" * 40000,
-]
+
 import sys
 import socket
 import random

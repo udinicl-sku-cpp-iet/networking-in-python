@@ -1,0 +1,30 @@
+import sys
+import socket
+import json
+import threading
+from chatui import init_windows, read_command, print_message, end_windows
+
+def usage():
+    print("Usage : python3 chat_client.py <nickname> <ip> <port>", file=sys.stderr)
+
+def main(argv):
+    try:
+        nickname =     sys.argv[1]
+        host     =     sys.argv[2]
+        port     = int(sys.argv[3])
+    except:
+        usage()
+        return 1
+    print(nickname, host, port)
+    s = socket.socket()
+    s.connect((host, port))
+
+    data = {
+        "type":  "hello",
+        "nick": f"{nickname}"
+    }
+    json_string = json.dumps(data)
+    s.sendall(json_string.encode())
+
+if __name__ == "__main__":
+    sys.exit(main(sys.argv))
