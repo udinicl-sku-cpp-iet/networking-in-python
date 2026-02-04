@@ -22,6 +22,8 @@ def content_type(filename : str) -> str:
                 return "image/jpeg"
             case ".gif":
                 return "image/gif"
+            case ".mp4":
+                return "video/mp4"
             case _:
                 return "application/octet-stream"
 def error404():
